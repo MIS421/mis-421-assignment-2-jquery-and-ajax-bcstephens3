@@ -1,17 +1,97 @@
 <!doctype html>
-
 <html lang="en">
-
 <head>
+    <!-- regular jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha384-i61gTtaoovXtAbKjo903+O55Jkn2+RtzHtvNez+yI49HAASvznhe9sZyjaSHTau9"
+            crossorigin="anonymous">
+    </script>
+    <!-- css file for jquery ui -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/swanky-purse/jquery-ui.css" integrity="sha384-j8Tbk62lg8OyWymjhC5DW5vhaEAgc+Bu+YYGL9ccnCXImuoq14kbUolY2p99XgP+" crossorigin="anonymous">
+    <!-- js for jquery ui -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
+            integrity="sha384-4D3G3GikQs6hLlLZGdz5wLFzuqE9v4yVGAcOH86y23JqBDPzj9viv0EqyfIa6YUL" crossorigin="anonymous">
+    </script>
+    <!--  jquery validate -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+            integrity="sha384-aEDtD4n2FLrMdE9psop0SHdNyy/W9cBjH22rSRp+3wPHd62Y32uijc0H2eLmgaSn" crossorigin="anonymous">
+    </script>
+    <link href="./style.css" rel="stylesheet" />
+    <title>Wookie Wayfinder</title>
+    <style>
+        body,html
+        {
+            height:100%;
+        }
+        #searchResults {
+            height: 500px;
+            width: 500px;
+            visibility: hidden;
+        }
+        #title {
+            font-family: 'Pathway Gothic One', sans-serif; 
+            font-size: 50px;
+            color: black;
+            text-decoration: none;
+        }
+        #time {
+            visibility: hidden;
+        }
+        .content {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#time").dialog({
+                autoOpen: false,
+                show: {
+                    effect: "blind",
+                    duration: 1000
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 1000
+                }
+            });
 
-  <link rel="stylesheet" href="./style.css">
-
+            $("#CurrentTime").on("click", function () {
+                $("#time").dialog("open");
+            });
+        });
+    </script>
 </head>
 
-<body>
+<body onload="setBackground()">
+    <div class="content">
+        <script type="text/javascript" src="./script.js"></script>
+        <div>
+            <svg id="animation" viewBox="0 0 960 300" onclick="nameOnClick()">
+                <symbol id="s-text">
+                    <text text-anchor="middle" x="50%" y="80%">W.W.</text>
+                    <text text-anchor="middle" x="50%" y="80%">W.W.</text>
+                </symbol>
+                <g class="g-ants">
+                    <use xlink:href="#s-text" class="text-copy"></use>
+                    <use xlink:href="#s-text" class="text-copy"></use>
+                    <use xlink:href="#s-text" class="text-copy"></use>
+                    <use xlink:href="#s-text" class="text-copy"></use>
+                    <use xlink:href="#s-text" class="text-copy"></use>
+                </g>
+            </svg>
+            <h1 id="title" onclick="nameOnClick()">Wookie Wayfinder</h1>
+        </div>
+        <p><input id="query" type="text" placeholder="Honor and Friendship..."></p>
+        <button onclick="searchOnClick()" id="Search">Search</button>
+        <button id="CurrentTime" onclick="currentGalaxyTimeClick()">Current Galaxy Time</button>
+        <button onclick="getFeelingLucky()" id="FeelingLucky">I'm Feeling Lucky</button>
+        <div id="searchResults" title="W.W. Results">
 
-  <script type="text/javascript" src="./script.js"></script>
+        </div>
+        <div id="time" title="Current Galaxy Time">
 
+        </div>
+    </div>
 </body>
-
 </html>
